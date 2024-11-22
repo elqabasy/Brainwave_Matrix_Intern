@@ -4,15 +4,15 @@
 
 
 
-Vault::Vault() : money(100000.0) {}
+Vault::Vault() : _money(100000.0) {}
 
 void Vault::addMoney(double amount) {
-    money += amount;
+    _money += amount;
 }
 
 bool Vault::withdrawMoney(double amount) {
-    if (money >= amount) {
-        money -= amount;
+    if (_money >= amount) {
+        _money -= amount;
         return true;
     } else {
         return false;
@@ -20,5 +20,5 @@ bool Vault::withdrawMoney(double amount) {
 }
 
 double Vault::checkBalance() const {
-    return money;
+    return _money;
 }

@@ -3,7 +3,7 @@
 
 class Vault {
     private:
-        double money;
+        double _money;
 
     public:
         // Constructor

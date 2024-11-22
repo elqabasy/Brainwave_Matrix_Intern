@@ -8,11 +8,11 @@ using namespace std;
 
 class ATMInfo {
     public:
-        string location;
-        string preferences;
+        string _location;
+        string _preferences;
 
         // Constructor
-        ATMInfo(const string& loc, const string& pref) : location(loc), preferences(pref) {}
+        ATMInfo(const string& loc, const string& pref) : _location(loc), _preferences(pref) {}
 
         // Methods
         virtual void displayInfo() = 0;

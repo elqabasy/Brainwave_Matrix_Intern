@@ -7,50 +7,50 @@
 
 
 ATM::ATM(const std::string& loc, const std::string& pref, const std::string& logFilename)
-    : ATMInfo(loc, pref), authenticated(false), techAuthenticated(false), logger(logFilename) {}
+    : ATMInfo(loc, pref), _isAuthenticated(false), _isTechAuthenticated(false), _logger(logFilename) {}
 
 void ATM::displayInfo()  {
-    screen.display("ATM Location: " + location + "\nPreferences: " + preferences);
-    logger.log("Displayed ATM info");
+    _screen.display("ATM Location: " + _location + "\nPreferences: " + _preferences);
+    _logger.log("Displayed ATM info");
 }
 
 void ATM::insertCard() {
-    currentCard = cardReader.readCard();
-    if (bankDB.validateCard(currentCard)) {
-        screen.display(ATMConstants::CARD_INSERT_PROMPT);
-        soundUnit.playSound("Enter PIN sound");
-        logger.log("Card inserted: " + currentCard);
+    _currentCard = _cardReader.readCard();
+    if (_bankDB.validateCard(_currentCard)) {
+        _screen.display(ATMConstants::CARD_INSERT_PROMPT);
+        _soundUnit.playSound("Enter PIN sound");
+        _logger.log("Card inserted: " + _currentCard);
     } else {
-        screen.display(ATMConstants::INVALID_CARD_MESSAGE);
-        soundUnit.playSound("Error sound");
-        logger.log("Invalid card inserted");
-        currentCard = "";
+        _screen.display(ATMConstants::INVALID_CARD_MESSAGE);
+        _soundUnit.playSound("Error sound");
+        _logger.log("Invalid card inserted");
+        _currentCard = "";
     }
 }
 
 void ATM::enterPIN(const std::string& pin) {
-    if (bankDB.validatePIN(currentCard, pin)) {
-        authenticated = true;
-        screen.display(ATMConstants::PIN_VERIFIED_MESSAGE);
-        soundUnit.playSound("PIN verified sound");
-        logger.log("PIN verified for card: " + currentCard);
+    if (_bankDB.validatePIN(_currentCard, pin)) {
+        _isAuthenticated = true;
+        _screen.display(ATMConstants::PIN_VERIFIED_MESSAGE);
+        _soundUnit.playSound("PIN verified sound");
+        _logger.log("PIN verified for card: " + _currentCard);
     } else {
-        screen.display(ATMConstants::INVALID_PIN_MESSAGE);
-        soundUnit.playSound("Error sound");
-        logger.log("Invalid PIN entered for card: " + currentCard);
+        _screen.display(ATMConstants::INVALID_PIN_MESSAGE);
+        _soundUnit.playSound("Error sound");
+        _logger.log("Invalid PIN entered for card: " + _currentCard);
     }
 }
 
 void ATM::techLogin(const std::string& password) {
     if (password == ATMConstants::TECH_PASSWORD) {
-        techAuthenticated = true;
-        screen.display("Technical support access granted. Choose an option: 1) Report Issue 2) Schedule Maintenance 3) Check ATM Status");
-        soundUnit.playSound("Access granted sound");
-        logger.log("Technical support access granted");
+        _isTechAuthenticated = true;
+        _screen.display("Technical support access granted. Choose an option: 1) Report Issue 2) Schedule Maintenance 3) Check ATM Status");
+        _soundUnit.playSound("Access granted sound");
+        _logger.log("Technical support access granted");
     } else {
-        screen.display("Invalid password. Access denied.");
-        soundUnit.playSound("Error sound");
-        logger.log("Invalid technical support password entered");
+        _screen.display("Invalid password. Access denied.");
+        _soundUnit.playSound("Error sound");
+        _logger.log("Invalid technical support password entered");
     }
 }
 
@@ -59,59 +59,59 @@ void ATM::executeTransaction(Transaction& transaction) {
 }
 
 void ATM::reportIssue(const std::string& issue) {
-    if (techAuthenticated) {
-        techSupport.reportIssue(issue);
-        screen.display(ATMConstants::ISSUE_REPORTED_MESSAGE);
-        soundUnit.playSound("Issue reported sound");
-        logger.log("Issue reported: " + issue);
+    if (_isTechAuthenticated) {
+        _techSupport.reportIssue(issue);
+        _screen.display(ATMConstants::ISSUE_REPORTED_MESSAGE);
+        _soundUnit.playSound("Issue reported sound");
+        _logger.log("Issue reported: " + issue);
     } else {
-        screen.display("Please authenticate as technical support first.");
-        soundUnit.playSound("Error sound");
-        logger.log("Unauthorized issue report attempt");
+        _screen.display("Please authenticate as technical support first.");
+        _soundUnit.playSound("Error sound");
+        _logger.log("Unauthorized issue report attempt");
     }
 }
 
 void ATM::scheduleMaintenance(const std::string& date) {
-    if (techAuthenticated) {
-        techSupport.scheduleMaintenance(date);
-        screen.display(ATMConstants::MAINTENANCE_SCHEDULED_MESSAGE + date);
-        soundUnit.playSound("Maintenance scheduled sound");
-        logger.log("Maintenance scheduled on: " + date);
+    if (_isTechAuthenticated) {
+        _techSupport.scheduleMaintenance(date);
+        _screen.display(ATMConstants::MAINTENANCE_SCHEDULED_MESSAGE + date);
+        _soundUnit.playSound("Maintenance scheduled sound");
+        _logger.log("Maintenance scheduled on: " + date);
     } else {
-        screen.display("Please authenticate as technical support first.");
-        soundUnit.playSound("Error sound");
-        logger.log("Unauthorized maintenance scheduling attempt");
+        _screen.display("Please authenticate as technical support first.");
+        _soundUnit.playSound("Error sound");
+        _logger.log("Unauthorized maintenance scheduling attempt");
     }
 }
 
 void ATM::checkATMStatus() {
-    if (techAuthenticated) {
-        techSupport.checkATMStatus();
-        screen.display(ATMConstants::STATUS_CHECKED_MESSAGE);
-        soundUnit.playSound("Status checked sound");
-        logger.log("ATM status checked");
+    if (_isTechAuthenticated) {
+        _techSupport.checkATMStatus();
+        _screen.display(ATMConstants::STATUS_CHECKED_MESSAGE);
+        _soundUnit.playSound("Status checked sound");
+        _logger.log("ATM status checked");
     } else {
-        screen.display("Please authenticate as technical support first.");
-        soundUnit.playSound("Error sound");
-        logger.log("Unauthorized status check attempt");
+        _screen.display("Please authenticate as technical support first.");
+        _soundUnit.playSound("Error sound");
+        _logger.log("Unauthorized status check attempt");
     }
 }
 
 bool ATM::isAuthenticated() const {
-    return authenticated;
+    return _isAuthenticated;
 }
 
 bool ATM::isTechAuthenticated() const {
-    return techAuthenticated;
+    return _isTechAuthenticated;
 }
 
 // Getters for components
-BankDB& ATM::getBankDB() { return bankDB; }
-Vault& ATM::getVault() { return vault; }
-CardReader& ATM::getCardReader() { return cardReader; }
-CashDispenser& ATM::getCashDispenser() { return cashDispenser; }
-ReceiptPrinter& ATM::getReceiptPrinter() { return receiptPrinter; }
-ATMScreen& ATM::getScreen() { return screen; }
-SoundUnit& ATM::getSoundUnit() { return soundUnit; }
-Logger& ATM::getLogger() { return logger; }
-std::string& ATM::getCurrentCard() { return currentCard; }
+BankDB& ATM::getBankDB() { return _bankDB; }
+Vault& ATM::getVault() { return _vault; }
+CardReader& ATM::getCardReader() { return _cardReader; }
+CashDispenser& ATM::getCashDispenser() { return _cashDispenser; }
+ReceiptPrinter& ATM::getReceiptPrinter() { return _receiptPrinter; }
+ATMScreen& ATM::getScreen() { return _screen; }
+SoundUnit& ATM::getSoundUnit() { return _soundUnit; }
+Logger& ATM::getLogger() { return _logger; }
+std::string& ATM::getCurrentCard() { return _currentCard; }

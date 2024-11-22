@@ -23,21 +23,21 @@ using namespace std;
 class ATM : public ATMInfo {
     private:
         // Private data
-        string managedBy;
-        string currentCard;
-        bool authenticated;
-        bool techAuthenticated;
+        string _managedBy;
+        string _currentCard;
+        bool _isAuthenticated;
+        bool _isTechAuthenticated;
         
         // Integrated Components
-        Vault vault;
-        Logger logger;
-        BankDB bankDB;  
-        ATMScreen screen;
-        SoundUnit soundUnit;
-        CardReader cardReader;
-        CashDispenser cashDispenser;
-        ReceiptPrinter receiptPrinter;
-        TechnicalSupport techSupport;
+        Vault _vault;
+        Logger _logger;
+        BankDB _bankDB;  
+        ATMScreen _screen;
+        SoundUnit _soundUnit;
+        CardReader _cardReader;
+        CashDispenser _cashDispenser;
+        ReceiptPrinter _receiptPrinter;
+        TechnicalSupport _techSupport;
 
     public:
         // Constructor
