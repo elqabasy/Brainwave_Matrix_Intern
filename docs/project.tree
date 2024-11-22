@@ -1,0 +1,60 @@
+ATM-Interface
+│   .editorconfig
+│   .gitignore
+│   CMakeLists.txt
+│   README.md
+│
+├───docs
+│   │   API.md
+│   │
+│   └───diagrams
+│           atm.uml.class.diagram.png
+│           atm.transaction.process.diagram.png
+│
+├───include
+│   ├───atm
+│   │       ATM.hpp
+│   │       ATMInfo.hpp
+│   │
+│   ├───components
+│   │       Vault.hpp
+│   │       BankDB.hpp
+│   │       ATMScreen.hpp
+│   │       SoundUnit.hpp
+│   │       CardReader.hpp
+│   │       CashDispenser.hpp
+│   │       ReceiptPrinter.hpp
+│   │
+│   ├───transactions
+│   │       Transaction.hpp
+│   │       DepositTransaction.hpp
+│   │       WithdrawTransaction.hpp
+│   │
+│   └───utils
+│           Logger.hpp
+│           ATMConstants.hpp
+│           TechnicalSupport.hpp
+│
+└───source
+    │   main.cpp
+    │
+    ├───atm
+    │       ATM.cpp
+    │       ATMInfo.cpp
+    │
+    ├───components
+    │       Vault.cpp
+    │       BankDB.cpp
+    │       ATMScreen.cpp
+    │       SoundUnit.cpp
+    │       CardReader.cpp
+    │       CashDispenser.cpp
+    │       ReceiptPrinter.cpp
+    │
+    ├───transactions
+    │       DepositTransaction.cpp
+    │       WithdrawTransaction.cpp
+    │
+    └───utils
+            Logger.cpp
+            TechnicalSupport.cpp

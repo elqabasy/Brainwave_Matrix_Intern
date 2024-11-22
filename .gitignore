@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+
+# more
+build/
+.vscode/
+create.ps1
