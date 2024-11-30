@@ -50,19 +50,20 @@ This repository contains my internship tasks implemented in C++ using Object-Ori
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/elqabasy/BrainWave_Matrix_Solutions.git
    ```
 
 2. Navigate to the desired task folder:
 
    ```bash
-   cd task1_atm_interface
+   cd Task_01
    ```
 
 3. Compile and run the code:
 
    ```bash
-   g++ main.cpp -o atm && ./atm
+   cd build/
+   make . && ./ATMInterface.exe
    ```
 
 ## Author
