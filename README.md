@@ -6,6 +6,7 @@ This repository contains my internship tasks implemented in C++ using Object-Ori
 ## Tasks Overview
 
 ### Task 1: ATM Interface
+
 - **Description**:  
   A simple ATM interface that simulates basic ATM functionalities.
 - **Features**:
@@ -22,6 +23,7 @@ This repository contains my internship tasks implemented in C++ using Object-Ori
 ---
 
 ### Task 2: Bank System
+
 - **Description**:  
   An online banking system that allows users to manage their accounts.
 - **Features**:
@@ -38,46 +40,32 @@ This repository contains my internship tasks implemented in C++ using Object-Ori
 ---
 
 ## Tools and Technologies
+
 - **Programming Language**: C++
 - **Paradigm**: Object-Oriented Programming (OOP)
 - **Development Tools**: Any standard C++ IDE or text editor.
 
 ## How to Use
+
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/your-repo-name.git
    ```
+
 2. Navigate to the desired task folder:
+
    ```bash
    cd task1_atm_interface
    ```
+
 3. Compile and run the code:
+
    ```bash
    g++ main.cpp -o atm && ./atm
    ```
 
-## Project Structure
-```plaintext
-├── task1_atm_interface/
-│   ├── main.cpp
-│   ├── atm.h
-│   └── atm.cpp
-├── task2_bank_system/
-│   ├── main.cpp
-│   ├── bank.h
-│   └── bank.cpp
-└── README.md
-```
-
-## Future Improvements
-- Implement a database or file system for data persistence.
-- Enhance user interface with GUI tools.
-- Add error handling for invalid inputs.
-
 ## Author
+
 **Mahros Mohamed**  
-[LinkedIn](https://linkedin.com/in/mahros-mohamed)  
-
----
-
-Feel free to reach out for suggestions or feedback!
+[LinkedIn](https://linkedin.com/in/ma7ros)  
